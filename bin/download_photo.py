@@ -8,6 +8,7 @@ load_dotenv()
 import logging
 from typing import List, Tuple
 logging.basicConfig(level=logging.INFO)
+from register import get_register
 
 
 def setup() -> Tuple[List, str, str]:
@@ -40,16 +41,19 @@ def download(local_path: str, duplicate_folder: str, file_list: List):
         duplicate_folder: Path to store duplicate files.
         file_list: List of files to download.
     """
+    already_downloaded = get_register()
     for file in file_list:
         try:
             if file['mimeType'] != 'application/vnd.google-apps.folder':  # check if it is not a folder
+                if file['title'] in already_downloaded:
+                    logging.info(f"Already downloaded: {file['title']}")
+                    continue
                 file_path = os.path.join(local_path, file['title'])
                 if os.path.exists(file_path):
                     #duplicate_folder = duplicate_dir if os.path.exists(duplicate_dir) else os.mkdir(DUPLICATE_FOLDER) # TODO non mi piacciono i duplicati, magari fa solo un check se la foto è già presente nella cartella
                     duplicate_path = os.path.join(duplicate_folder, file['title'])
                     shutil.move(file_path, duplicate_path)
                     logging.info(f"Downloaded: {file['title']}")
-                
                 else:
                     file.GetContentFile(file_path)  # download the files
                     print(f"Downloaded: {file['title']}")

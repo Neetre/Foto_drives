@@ -2,3 +2,6 @@
 __pycache__/
 
 .env
+client_secrets.json
+test.py
+registry.txt
