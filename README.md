@@ -2,7 +2,19 @@
 
 ## Description
 
+This program is a simple file manager that allows you to download images from a drive folder and order them by date.
+
+### Note
+
+Some images might not have the date in the metadata, so they will stay in the base folder.
+
+## Improvements
+
+- [ ] Read the date from the name of the file, if the metadata is not available.
+
 ## Requirements
+
+You need the client_secrets.json file from the Google API Console. You can download it from the [Google API Console](https://console.developers.google.com/) after creating a new project and enabling the Google Drive API.
 
 python >= 3.9
 
@@ -17,15 +29,20 @@ These scripts will install required dependencies, and build a virtual environmen
 
 ## Usage
 
-Before running the application, you need to insert the text you want to use as input in the `data/input.txt` file.
 Run the following command to start the application:
 
 ```bash
 cd bin
-python ./main.py [--help]
+python ./main.py
 ```
 
-![help](./data/readme/help.png)
+Here is how the will look like:
+![download](./data/readme/download.png)
+
+And here is how the images will be ordered:
+![ordered](./data/readme/order.png)
+
+None is because the image doesn't have the date in the metadata.
 
 ## License
 

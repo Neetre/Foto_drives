@@ -6,7 +6,8 @@ def make_register():
     with open("../data/registry.txt", "w") as registry:
         for root, dirs, files in os.walk(os.environ.get("FOLDER_PATH")):
             for file in files:
-                registry.write(f"{file}\n")
+                if not file.endswith(".txt"):
+                    registry.write(f"{file}\n")
 
 
 def get_register():
