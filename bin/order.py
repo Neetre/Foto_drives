@@ -75,7 +75,7 @@ def move_files(data):
         shutil.move(file, os.path.join(os.environ.get("FOLDER_PATH"), day, os.path.basename(file)))
 
 
-def main():
+def img_sort():
     data = {}
     files = get_files()
     for file in files:
@@ -101,4 +101,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    img_sort()
